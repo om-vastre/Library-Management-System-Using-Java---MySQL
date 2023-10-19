@@ -1,0 +1,45 @@
+#### Logins ####
+use bharti_womens_lib;
+Create table login(
+  ID INT NOT NULL AUTO_INCREMENT,
+  user_name VARCHAR(50) NOT NULL,
+  pass INT,
+  PRIMARY KEY (ID)
+);
+
+
+
+#### Books ####
+use bharti_womens_lib;
+CREATE TABLE book (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255),
+  author VARCHAR(255),
+  publication VARCHAR(255),
+  edition VARCHAR(255),
+  pub_year INT,
+  student_id INT,
+  issuedate DATE DEFAULT 'YYYY-MM-DD',
+  status VARCHAR(255),
+  FOREIGN KEY (student_id) REFERENCES student(rollno)
+);
+SELECT * FROM bharti_womens_lib.book;
+insert into book(id, title, author, publication, edition, pub_year) values (0, "power electronics", "K.A Khanchandani", "Nirali", "Second", 2003);
+
+
+
+
+#### Student ####
+use bharti_womens_lib;
+CREATE TABLE student (
+  rollno INT NOT NULL,
+  s_name VARCHAR(255) NOT NULL,
+  class VARCHAR(255) NOT NULL,
+  division VARCHAR(255) NOT NULL,
+  contact VARCHAR(255) NOT NULL,
+  book_id INT NOT NULL,
+  PRIMARY KEY (rollno),
+  FOREIGN KEY (book_id) REFERENCES book(id)
+);
+SELECT * FROM bharti_womens_lib.book;
+insert into book(id, title, author, publication, edition, pub_year, student_id, issuedate, stat) values (0, "power electronics", "K.A Khanchandani", "Nirali", "Second", 2003, 1, '2023-10-19', "Issued");
